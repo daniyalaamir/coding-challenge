@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ArrowLeftShort, List, X } from 'react-bootstrap-icons';
 import './App.css';
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
       <header className="header">
         <div className="avatar">FL</div>
         <h1>PAR Excellence</h1>
-        <button className="menu-button">≡</button>
+        <button className="menu-button"><List size={27} /></button>
       </header>
       <main className="main">
         {!submitted ? (
@@ -72,7 +73,10 @@ function App() {
                 ))}
               </tbody>
             </table>
-            <button onClick={() => setViewAll(false)}>← Back to My Profile</button>
+            <button onClick={() => setViewAll(false)} className="back-button">
+              <ArrowLeftShort size={27} />
+              Back to My Profile
+            </button>
           </div>
         ) : (
           <div className="profile">
@@ -90,11 +94,11 @@ function App() {
             <div className="modal">
               <div className="modal-header">
                 <h3 className="modal-title">{editMode ? 'Edit Profile Info' : 'Get Started'}</h3>
-                <button className="close-button" onClick={() => { setShowForm(false); setEditMode(false); }}>×</button>
+                <button className="close-button" onClick={() => { setShowForm(false); setEditMode(false); }}><X size={20} /></button>
               </div>
               <div className="modal-body">
                 <p className="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <label>Name *</label>
+                <label>Name*</label>
                 <div className="input-wrapper">
                   <div className="input-container">
                     <input
@@ -109,17 +113,18 @@ function App() {
                         }
                       }}
                       placeholder="Enter your name"
+                      className={nameError ? 'error' : ''}
                     />
                     {name && (
                       <button
-                        className="clear-input"
+                        className={`clear-input ${nameError ? 'error' : ''}`}
                         onClick={() => {
                           setName('');
                           setNameError('');
                         }}
                         aria-label="Clear name input"
                       >
-                        ×
+                        <X size={25} />
                       </button>
                     )}
                   </div>
@@ -127,24 +132,25 @@ function App() {
                     <div className="input-error">{nameError}</div>
                   )}
                 </div>
-
                 <label>Username</label>
-                <div className="input-wrapper">
-                  <input
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    placeholder="Enter a username"
-                  />
-                  {username && (
-                    <button
-                      className="clear-input"
-                      onClick={() => setUsername('')}
-                      aria-label="Clear username input"
-                    >
-                      ×
-                    </button>
-                  )}
-                </div>
+                  <div className="input-wrapper">
+                    <div className="input-container">
+                      <input
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                        placeholder="Enter a username"
+                      />
+                      {username && (
+                        <button
+                          className="clear-input"
+                          onClick={() => setUsername('')}
+                          aria-label="Clear username input"
+                        >
+                          <X size={25} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
               </div>
               <div className="modal-footer">
                 <button
