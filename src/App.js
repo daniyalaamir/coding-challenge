@@ -94,36 +94,40 @@ function App() {
               </div>
               <div className="modal-body">
                 <p className="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <label>Name*</label>
+                <label>Name *</label>
                 <div className="input-wrapper">
-                  <input
-                    value={name}
-                    onChange={e => {
-                      const value = e.target.value;
-                      setName(value);
-                      if (/\d/.test(value)) {
-                        setNameError('Name must not contain numbers.');
-                      } else {
-                        setNameError('');
-                      }
-                    }}
-                    placeholder="Enter your name"
-                  />
+                  <div className="input-container">
+                    <input
+                      value={name}
+                      onChange={e => {
+                        const value = e.target.value;
+                        setName(value);
+                        if (/\d/.test(value)) {
+                          setNameError('Name must not contain numbers.');
+                        } else {
+                          setNameError('');
+                        }
+                      }}
+                      placeholder="Enter your name"
+                    />
+                    {name && (
+                      <button
+                        className="clear-input"
+                        onClick={() => {
+                          setName('');
+                          setNameError('');
+                        }}
+                        aria-label="Clear name input"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
                   {nameError && (
-                    <div style={{ color: 'red', fontSize: '14px', marginTop: '5px', width: '591px', height: '14px' }}>
-                      {nameError}
-                    </div>
-                  )}
-                  {name && (
-                    <button
-                      className="clear-input"
-                      onClick={() => setName('')}
-                      aria-label="Clear name input"
-                    >
-                      ×
-                    </button>
+                    <div className="input-error">{nameError}</div>
                   )}
                 </div>
+
                 <label>Username</label>
                 <div className="input-wrapper">
                   <input
@@ -143,7 +147,18 @@ function App() {
                 </div>
               </div>
               <div className="modal-footer">
-                <button className="cancel-button" onClick={() => { setShowForm(false); setEditMode(false); }}>Cancel</button>
+                <button
+                  className="cancel-button"
+                  onClick={() => {
+                    setShowForm(false);
+                    setEditMode(false);
+                    setName('');
+                    setUsername('');
+                    setNameError('');
+                  }}
+                >
+                  Cancel
+                </button>
                 <button
                   className="submit-button"
                   onClick={editMode ? saveChanges : handleSubmit}
