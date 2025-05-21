@@ -89,7 +89,7 @@ function App() {
         {showForm && (
           <Form
             title={editMode ? 'Edit Profile Info' : 'Get Started'}
-            description="Please enter your profile details."
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             fields={[
               { name: 'name', label: 'Name', required: true },
               { name: 'username', label: 'Username', required: true }
