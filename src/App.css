@@ -62,13 +62,6 @@ body {
   box-sizing: border-box;
 }
 
-.main p {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 32px;
-  color: #000;
-}
-
 .centered-content {
   display: flex;
   flex-direction: column;
@@ -76,12 +69,13 @@ body {
   justify-content: center;
   flex: 1;
   height: 100%;
+  font-size: 24px;
   text-align: center;
 }
 
 button {
   cursor: pointer;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 18px;
@@ -99,22 +93,49 @@ button:focus {
   outline: none;
 }
 
-.get-started {
+button svg {
+  vertical-align: middle;
+  margin-right: 0;
+}
+
+.get-started,
+.profile button.primary,
+.profile-table button,
+.submit-button {
   background-color: #004A98;
   color: #fff;
 }
 
-.get-started:hover {
+.get-started:hover,
+.profile button.primary:hover,
+.profile-table button:hover {
   background-color: #003974;
 }
 
-button:nth-of-type(2) {
+.profile button.secondary,
+.cancel-button {
   background-color: #fff;
   color: #004A98;
+  border: 1px solid #004A98;
+}
+
+.profile-table button {
+  margin-top: 32px;
 }
 
 .profile {
-  position: relative; /* Add this */
+  position: relative;
+}
+
+.profile button.secondary {
+  padding: 0;
+}
+
+.profile button.secondary:hover {
+  background-color: #E6F0FB;
+}
+
+.profile, .profile-table {
   width: 100%;
   margin: 0 auto;
   padding: 32px;
@@ -123,28 +144,21 @@ button:nth-of-type(2) {
   box-sizing: border-box;
 }
 
-.profile h2 {
-  font-weight: 700;
+.profile h2, .profile-table h2 {
   font-size: 24px;
-  line-height: 32px;
-  letter-spacing: 0%;
-}
-
-.profile p span {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0%;
-  color: #757575;
+  font-weight: 700;
+  margin-top: 0;
 }
 
 .profile p {
-  font-family: Inter;
-  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
   color: #000;
+}
+
+.profile p span {
+  font-size: 14px;
+  color: #757575;
 }
 
 .profile-buttons {
@@ -156,74 +170,7 @@ button:nth-of-type(2) {
 .profile button {
   width: 174px;
   height: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 16px 24px;
-  border: none;
-}
-
-.profile button.primary {
-  background-color: #004A98;
-  color: white;
-}
-
-.profile button.secondary {
-  background-color: white;
-  color: #004A98;
-  padding: 0;
-  border: 1px solid #004A98;
-}
-
-.profile button:hover {
-  opacity: 0.9;
-}
-
-.profile button.primary:hover {
-  background-color: #003974;
-}
-
-.profile button.secondary:hover {
-  background-color: #E6F0FB;
-}
-
-.profile-table {
-  width: 100%;
-  /* max-width: 1376px; */
-  margin: 0 auto;
-  position: relative;
-  top: 0;
-  left: 0;
-  padding: 32px;
-  background: #fff;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-.profile-table h2 {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 32px;
-  color: #000;
-  margin: 0 0 32px 0;
-}
-
-.profile h2,
-.profile-table h2 {
-  margin-top: 0;
-}
-
-.profile-table button {
-  background: #004A98;
-  color: #fff;
-  border: 1px solid #004A98;
-  border-radius: 6px;
-  padding: 16px 24px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18px;
-  margin-top: 32px;
-  cursor: pointer;
+  margin-right: 8px;
 }
 
 table {
@@ -232,22 +179,19 @@ table {
   background-color: white;
 }
 
-th {
-  background-color: #fff;
+th, td {
   padding: 16px;
   font-size: 14px;
-  font-weight: 700;
-  color: #000;
   border: 1px solid #DEE2E6;
   text-align: left;
 }
 
+th {
+  font-weight: 700;
+}
+
 td {
-  padding: 16px;
-  font-size: 14px;
   font-weight: 400;
-  color: #000;
-  border: 1px solid #DEE2E6;
 }
 
 tbody tr:nth-child(even) {
@@ -273,7 +217,6 @@ tbody tr:nth-child(even) {
   background: #fff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
 }
 
 .modal-header {
@@ -282,7 +225,6 @@ tbody tr:nth-child(even) {
   align-items: center;
   padding: 16px;
   border-bottom: 1px solid #CED4DA;
-  background-color: #fff;
 }
 
 .modal-title {
@@ -293,79 +235,69 @@ tbody tr:nth-child(even) {
 }
 
 .close-button {
-  font-size: 16px;
   background: none;
   border: none;
   cursor: pointer;
   color: #000;
   width: 16px;
   height: 16px;
-  line-height: 1;
   padding: 0;
 }
 
 .modal-body {
-  text-align: left;
   padding: 16px;
   border-bottom: 1px solid #CED4DA;
+  text-align: left;
 }
 
 .modal-description {
-  font-size: 16px !important;
-  line-height: 26px !important;
-  font-weight: 400 !important;
-  color: #6C757D !important;
-  margin: 0 0 16px !important;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6C757D;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .modal-body label {
   display: block;
   font-size: 16px;
   margin-bottom: 8px;
-  font-weight: 400;
   color: #000;
 }
 
-.modal-body input {
-  width: 557px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
+.modal-footer button {
+  flex: 1;
   font-size: 16px;
-  border: 1px solid #DEE2E6;
-  border-radius: 6px;
-  color: #000;
+  font-weight: 600;
+  padding: 16px 24px;
 }
 
-.modal-body input:focus {
-  outline: 1px solid #d9e4f0;
+.modal-footer button.default {
   border: 1px solid #004A98;
-  box-shadow: 0px 0px 0px 3px #004A9826;
+  background: #fff;
+  color: #004A98;
+  border-radius: 6px;
 }
 
-.modal-body input:last-of-type {
-  margin-bottom: 0
+.modal-footer button.primary {
+  background: #004A98;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  opacity: 0.85;
+  cursor: pointer;
 }
 
-.modal-body input::placeholder {
-  color: #ADB5BD;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0%;
-
+.modal-footer button.primary:disabled {
+  background: #739cc6;
+  cursor: not-allowed;
+  opacity: 0.9;
 }
 
 .input-wrapper {
-  width: fit-content;
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
-}
-
-.input-wrapper input {
-  width: 535px;
-  padding-right: 40px;
-
 }
 
 .input-wrapper:last-of-type {
@@ -374,30 +306,31 @@ tbody tr:nth-child(even) {
 
 .input-container {
   position: relative;
-  width: fit-content;
-  display: inline-block;
 }
 
 .input-container input {
   width: 535px;
+  padding: 14px 16px;
   padding-right: 40px;
+  font-size: 16px;
+  border: 1px solid #DEE2E6;
+  border-radius: 6px;
+  color: #000;
 }
 
-.clear-input {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #000;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.input-container input:focus {
+  outline: 1px solid #d9e4f0;
+  border-color: #004A98;
+  box-shadow: 0 0 0 3px #004A9826;
+}
+
+.input-container input::placeholder {
+  color: #ADB5BD;
+}
+
+.input-container input.error {
+  color: #D80004;
+  border-color: #D80004;
 }
 
 .input-error {
@@ -406,11 +339,16 @@ tbody tr:nth-child(even) {
   margin-top: 5px;
 }
 
-.input-container input.error {
-  color: #D80004;
-  border-color: #D80004;
-  box-shadow: none;
-  outline: 1px solid white;
+.clear-input {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  padding: 0;
+  border: none;
+  color: #000;
+  cursor: pointer;
 }
 
 .clear-input.error {
@@ -423,32 +361,11 @@ tbody tr:nth-child(even) {
   gap: 8px;
   padding: 16px;
   background: #fff;
-  border-radius: 0 0 12px 12px;
-}
-
-.cancel-button {
-  flex: 1;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px 24px;
-  border: 1px solid #004A98;
-  background: #fff;
-  color: #004A98;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .submit-button {
   flex: 1;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px 24px;
-  background: #004A98 !important;
-  color: #fff !important;
-  border: none;
-  border-radius: 6px;
   opacity: 0.85;
-  cursor: pointer;
 }
 
 .submit-button:disabled {
@@ -457,26 +374,11 @@ tbody tr:nth-child(even) {
   opacity: 0.6;
 }
 
-.submit-button:disabled:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.submit-button:hover,
-.cancel-button:hover {
-  opacity: 1;
-}
-
-.toast {
-  position: relative; /* or absolute if you want to anchor it precisely */
-  width: fit-content;
-  padding: 1rem 1.5rem;
-  background-color: #fff;
-  border-left: 5px solid green;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-weight: 600;
+.toast div {
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .toast.success {
@@ -484,39 +386,32 @@ tbody tr:nth-child(even) {
   top: 16px;
   right: 16px;
   width: 337px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 0 16px;
   background-color: #FFFFFF;
   border-left: 4px solid #109E00;
   border-radius: 4px;
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.16);
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
   font-size: 16px;
-  color: #000000;
+  color: #000;
   z-index: 1;
 }
 
-
-
-.profile button {
-  margin-right: 8px;
+.toast svg {
+  width: 23px;
+  height: 24px;
+  cursor: pointer;
 }
-
-button svg {
-  vertical-align: middle;
-  margin-right: 0;
-}
-
 
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
   }
 
-  .modal-body input,
   .input-container input {
     width: 100%;
   }
