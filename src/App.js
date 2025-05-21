@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeftShort, List, X } from 'react-bootstrap-icons';
+import { ArrowLeftShort, List, X, Check2Circle } from 'react-bootstrap-icons';
 import './App.css';
 
 function App() {
@@ -19,6 +19,8 @@ function App() {
   ]);
   const [viewAll, setViewAll] = useState(false);
   const [nameError, setNameError] = useState('');
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   const currentProfile = profiles[profiles.length - 1] || { name: '', username: '' };
 
@@ -27,6 +29,9 @@ function App() {
     setProfiles([...profiles, { name, username }]);
     setSubmitted(true);
     setShowForm(false);
+    setToastMessage('Your Profile is set up.');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
   const handleEdit = () => {
@@ -43,6 +48,9 @@ function App() {
     setProfiles(updatedProfiles);
     setEditMode(false);
     setShowForm(false);
+    setToastMessage('Profile changes saved.');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
@@ -54,10 +62,10 @@ function App() {
       </header>
       <main className="main">
         {!submitted ? (
-          <>
+          <div className="centered-content">
             <p>Please enter your name and username to get started.</p>
             <button className='get-started' onClick={() => setShowForm(true)}>Get Started</button>
-          </>
+          </div>
         ) : viewAll ? (
           <div className="profile-table">
             <h2>All Profiles</h2>
@@ -87,6 +95,15 @@ function App() {
               <button className="primary" onClick={handleEdit}>Edit Profile Info</button>
               <button className="secondary" onClick={() => setViewAll(true)}>View All Profiles</button>
             </div>
+            {showToast && (
+              <div className="toast success">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Check2Circle color="#109E00" size={20} />
+                  <span>{toastMessage}</span>
+                </div>
+                <X size={20} color="#000000" onClick={() => setShowToast(false)} />
+              </div>
+            )}
           </div>
         )}
         {showForm && (
@@ -133,24 +150,24 @@ function App() {
                   )}
                 </div>
                 <label>Username</label>
-                  <div className="input-wrapper">
-                    <div className="input-container">
-                      <input
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                        placeholder="Enter a username"
-                      />
-                      {username && (
-                        <button
-                          className="clear-input"
-                          onClick={() => setUsername('')}
-                          aria-label="Clear username input"
-                        >
-                          <X size={25} />
-                        </button>
-                      )}
-                    </div>
+                <div className="input-wrapper">
+                  <div className="input-container">
+                    <input
+                      value={username}
+                      onChange={e => setUsername(e.target.value)}
+                      placeholder="Enter a username"
+                    />
+                    {username && (
+                      <button
+                        className="clear-input"
+                        onClick={() => setUsername('')}
+                        aria-label="Clear username input"
+                      >
+                        <X size={25} />
+                      </button>
+                    )}
                   </div>
+                </div>
               </div>
               <div className="modal-footer">
                 <button
@@ -176,12 +193,6 @@ function App() {
             </div>
           </div>
         )}
-        {/* {submitted && !editMode && (
-          <div className="toast success">✓ Your Profile is set up.</div>
-        )}
-        {!showForm && editMode && (
-          <div className="toast success">✓ Profile changes saved.</div>
-        )} */}
       </main>
     </div>
   );

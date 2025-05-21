@@ -58,9 +58,8 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .main p {
@@ -68,6 +67,16 @@ body {
   font-weight: 400;
   line-height: 32px;
   color: #000;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  text-align: center;
 }
 
 button {
@@ -105,15 +114,13 @@ button:nth-of-type(2) {
 }
 
 .profile {
-  width: 1376px;
-  position: absolute;
-  top: 96px;
-  left: 32px;
-  gap: 32px;
-  border-radius: 8px;
+  position: relative; /* Add this */
+  width: 100%;
+  margin: 0 auto;
   padding: 32px;
+  border-radius: 8px;
   background: #fff;
-  text-align: left;
+  box-sizing: border-box;
 }
 
 .profile h2 {
@@ -181,15 +188,16 @@ button:nth-of-type(2) {
 }
 
 .profile-table {
-  background: #fff;
-  text-align: left;
-  width: 1376px;
-  position: absolute;
-  top: 96px;
-  left: 32px;
-  gap: 32px;
-  border-radius: 8px;
+  width: 100%;
+  /* max-width: 1376px; */
+  margin: 0 auto;
+  position: relative;
+  top: 0;
+  left: 0;
   padding: 32px;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .profile-table h2 {
@@ -460,9 +468,8 @@ tbody tr:nth-child(even) {
 }
 
 .toast {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+  position: relative; /* or absolute if you want to anchor it precisely */
+  width: fit-content;
   padding: 1rem 1.5rem;
   background-color: #fff;
   border-left: 5px solid green;
@@ -473,8 +480,26 @@ tbody tr:nth-child(even) {
 }
 
 .toast.success {
-  border-color: #28a745;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 337px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #FFFFFF;
+  border-left: 4px solid #109E00;
+  border-radius: 4px;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.16);
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  z-index: 1;
 }
+
+
 
 .profile button {
   margin-right: 8px;
@@ -483,4 +508,16 @@ tbody tr:nth-child(even) {
 button svg {
   vertical-align: middle;
   margin-right: 0;
+}
+
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+
+  .modal-body input,
+  .input-container input {
+    width: 100%;
+  }
 }
